@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Install need packages
+
+pkg install openssh nmap micro iproute2 eza zoxide -y

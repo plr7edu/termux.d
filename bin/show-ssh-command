@@ -1,0 +1,10 @@
+#!/bin/bash
+
+whoami &&
+
+ip route | awk '{print $9}' &&
+
+
+echo -e '\033[1;33m[Username]@[IP Address] -p [Port Number]'
+echo -e '\033[0;0mExample = ssh u0_XXXX@192.168.X.XX -p 8022' 
+

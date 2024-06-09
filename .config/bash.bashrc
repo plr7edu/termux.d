@@ -1,0 +1,62 @@
+# Command history tweaks:
+# - Append history instead of overwriting
+#   when shell exits.
+# - When using history substitution, do not
+#   exec command immediately.
+# - Do not save to history commands starting
+#   with space.
+# - Do not save duplicated commands.
+shopt -s histappend
+shopt -s histverify
+export HISTCONTROL=ignoreboth
+
+# Default command line prompt.
+PROMPT_DIRTRIM=2
+PS1='\[\e[0;32m\]\w\[\e[0m\] \[\e[0;97m\]\$\[\e[0m\] '
+
+# Handles nonexistent commands.
+# If user has entered command which invokes non-available
+# utility, command-not-found will give a package suggestions.
+if [ -x /data/data/com.termux/files/usr/libexec/termux/command-not-found ]; then
+	command_not_found_handle() {
+		/data/data/com.termux/files/usr/libexec/termux/command-not-found "$1"
+	}
+fi
+
+
+### ALIASES ###
+alias update="pkg update && pkg upgrade -y"
+
+# Applicaitons
+
+# Micro
+alias m="micro"
+
+# Git
+alias st="git status"
+
+# Eza
+alias ls='eza -al --color=always --group-directories-first' # my preferred listing
+
+# BASHRC
+alias bashrc="micro ../usr/etc/bash.bashrc"
+
+### Scripts (Only work in home directory)  ------------------------------
+
+# Git Auto
+alias gitp="./termux.d/bin/gitp"
+
+#Show SSH Command
+alias dssh="./termux.d/bin/show-ssh-command"
+
+#-----------------------------------------------------------------------
+
+# Directory Navigation
+alias bin='cd termux.d/bin/'                                             
+alias doc="cd termux.d/Documents/"
+
+# Open File
+alias tgn="cat termux.d/Documents/termux-guide-notes.txt"
+
+# Zoxide
+eval "$(zoxide init bash)"
